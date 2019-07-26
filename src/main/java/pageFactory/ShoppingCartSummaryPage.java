@@ -32,6 +32,17 @@ public class ShoppingCartSummaryPage {
 		return Integer.parseInt(priceStr);
 	}
 	
+	public int getNthRowItemUnitQty(int rowNum) {
+		WebElement element = driver.findElement(By.xpath("//table[@id='cart_summary']//tbody/tr["+rowNum+"]//input[contains(@class,'cart_quantity_input')]"));
+		String priceStr = element.getAttribute("value");
+		return Integer.parseInt(priceStr);
+	}
+	
+	public int getNthRowItemTotalPrice(int rowNum) {
+		WebElement element = driver.findElement(By.xpath("//table[@id='cart_summary']//tbody/tr["+rowNum+"]//span/span[@class='price']"));
+		String priceStr = element.getText().replace("$", "");
+		return Integer.parseInt(priceStr);
+	}
 	
 	
 	
