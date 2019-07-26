@@ -10,7 +10,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import pageFactory.HomePage;
 import pageFactory.LandingPage;
+import pageFactory.LayerCartPopup;
 import pageFactory.MyAccountPage;
 import pageFactory.SignInPage;
 import utilities.Base;
@@ -21,6 +23,8 @@ public class LoginTest extends Base {
 	SignInPage signInPage;
 	MyAccountPage myAccountPage;
 	LandingPage landingPage;
+	HomePage homePage;
+	LayerCartPopup layerCart;
 
 	@BeforeClass
 	public void setupDriver() {
@@ -32,6 +36,8 @@ public class LoginTest extends Base {
 		signInPage = new SignInPage(driver);
 		myAccountPage = new MyAccountPage(driver);
 		landingPage = new LandingPage(driver);
+		homePage = new HomePage(driver);
+		layerCart = new LayerCartPopup(driver);
 
 	}
 
@@ -49,7 +55,7 @@ public class LoginTest extends Base {
 
 	@AfterMethod
 	public void afterMethod() {
-		driver.close();
+		//driver.close();
 	}
 
 	@DataProvider
@@ -60,6 +66,7 @@ public class LoginTest extends Base {
 	@Test
 	public void userPurchasesItem() {
 		myAccountPage.clickHomeBtn();
-		
+		homePage.addToCartFirstRowFirstElement();
+		layerCart.clickProceedToCheckoutBtn();
 	}
 }
